@@ -10,33 +10,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install Cordova
-        run: npm install -g cordova
+      - run: npm install -g cordova
 
-      - name: Install Dependencies
-        run: npm install
+      - run: npm install
 
-      - name: Add Android Platform
-        run: cordova platform add android@12
+      - uses: android-actions/setup-android@v2
+        with:
+          api-level: 33
+          build-tools: 33.0.2
+          target: android-33
 
-      - name: Setup Gradle 8.3
-        uses: gradle/gradle-build-action@v2
+      - run: cordova platform add android@12
+
+      - uses: gradle/gradle-build-action@v2
         with:
           gradle-version: 8.3
 
-      - name: Build APK
-        run: cordova build android
+      - run: cordova build android
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: app-debug
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
