@@ -1,3 +1,4 @@
+
 name: Build Android APK
 
 on:
@@ -24,21 +25,25 @@ jobs:
       # 4️⃣ Install project dependencies
       - run: npm install
 
-      # 5️⃣ Install Android SDK + Build Tools manually
-      - name: Install Android SDK Components
+      # 5️⃣ Install Android SDK properly
+      - name: Install Android SDK
+        uses: android-actions/setup-android@v3
+
+      # 6️⃣ Install required SDK components
+      - name: Install SDK Components
         run: |
           yes | sdkmanager --licenses
           sdkmanager "platform-tools"
           sdkmanager "platforms;android-33"
           sdkmanager "build-tools;33.0.2"
 
-      # 6️⃣ Add Android platform
+      # 7️⃣ Add Android platform
       - run: cordova platform add android@12
 
-      # 7️⃣ Build APK
+      # 8️⃣ Build APK
       - run: cordova build android
 
-      # 8️⃣ Upload APK
+      # 9️⃣ Upload APK
       - uses: actions/upload-artifact@v4
         with:
           name: app-debug
