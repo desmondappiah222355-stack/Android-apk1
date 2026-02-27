@@ -9,15 +9,16 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-    - name: Set up Java 17
+    - name: Setup Java 17
       uses: actions/setup-java@v4
       with:
-        distribution: 'temurin'
-        java-version: '17'
+        distribution: temurin
+        java-version: 17
 
-    - name: Set up Node
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 18
@@ -25,7 +26,7 @@ jobs:
     - name: Install Cordova
       run: npm install -g cordova
 
-    - name: Install dependencies
+    - name: Install project dependencies
       run: npm install
 
     - name: Setup Android SDK
@@ -33,21 +34,24 @@ jobs:
       with:
         accept-android-sdk-licenses: true
 
-    - name: Install SDK components
+    - name: Install Android SDK Components
       run: |
         sdkmanager "platform-tools"
         sdkmanager "platforms;android-33"
         sdkmanager "build-tools;33.0.2"
 
+    # 🔥 Install Gradle 7.6 (IMPORTANT)
+    - name: Install Gradle 7.6
+      run: |
+        wget https://services.gradle.org/distributions/gradle-7.6-bin.zip
+        unzip gradle-7.6-bin.zip
+        sudo mv gradle-7.6 /opt/gradle
+        echo "/opt/gradle/bin" >> $GITHUB_PATH
+
     - name: Add Android platform
       run: cordova platform add android@11
 
-    # 🔥 IMPORTANT: disable system gradle
-    - name: Remove system Gradle from PATH
-      run: |
-        sudo rm -rf /usr/share/gradle*
-
-    - name: Build APK (force wrapper)
+    - name: Build APK
       run: cordova build android --no-daemon
 
     - name: Upload APK
