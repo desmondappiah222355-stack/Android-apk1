@@ -1,13 +1,43 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.calculator.myapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget 
+    id="com.yourcompany.calculator" 
+    version="1.0.0" 
+    xmlns="http://www.w3.org/ns/widgets" 
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
+
+    <!-- App Display Name -->
     <name>Calculator</name>
+
+    <!-- App Description -->
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        A simple calculator app built with Apache Cordova.
     </description>
-    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
-        Apache Cordova Team
+
+    <!-- Author Info -->
+    <author email="dev@yourcompany.com" href="https://yourcompany.com">
+        Your Company
     </author>
+
+    <!-- Start Page -->
     <content src="index.html" />
+
+    <!-- Permissions / Intent Filters -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="mailto:*" />
+
+    <!-- App Icon -->
+    <icon src="resources/icon.png" />
+
+    <!-- Splash Screen -->
+    <splash src="resources/splash.png" />
+
+    <!-- Platform-specific preferences -->
+    <preference name="AndroidLaunchMode" value="singleTop" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="FadeSplashScreenDuration" value="500" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+
 </widget>
