@@ -10,39 +10,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout project
+      # 1️⃣ Checkout repo
       - uses: actions/checkout@v3
 
-      # 2. Setup Node
+      # 2️⃣ Setup Node
       - uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # 3. Install Cordova
+      # 3️⃣ Install Cordova
       - run: npm install -g cordova
 
-      # 4. Install project dependencies
+      # 4️⃣ Install project dependencies
       - run: npm install
 
-      # 5. Setup Android SDK + Build Tools 33.0.2
-      - uses: android-actions/setup-android@v2
-        with:
-          api-level: 33
-          build-tools: 33.0.2
-          target: android-33
+      # 5️⃣ Install Android SDK + Build Tools manually
+      - name: Install Android SDK Components
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools"
+          sdkmanager "platforms;android-33"
+          sdkmanager "build-tools;33.0.2"
 
-      # 6. Add Android platform
+      # 6️⃣ Add Android platform
       - run: cordova platform add android@12
 
-      # 7. Force Gradle 8.3 (system Gradle)
-      - uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 8.3
+      # 7️⃣ Build APK
+      - run: cordova build android
 
-      # 8. Build APK without using Cordova wrapper
-      - run: cordova build android --no-daemon -- --gradle-dir /usr/share/gradle
-
-      # 9. Upload APK artifact
+      # 8️⃣ Upload APK
       - uses: actions/upload-artifact@v4
         with:
           name: app-debug
