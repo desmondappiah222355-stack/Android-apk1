@@ -1,3 +1,4 @@
+# Build Cordova Android Debug APK with custom icons & splash
 name: Build Android APK
 
 on:
@@ -56,25 +57,28 @@ jobs:
           sudo mv gradle-7.6 /opt/gradle
           echo "/opt/gradle/bin" >> $GITHUB_PATH
 
-      # 9️⃣ Add Android platform
+      # 9️⃣ Remove old build & clean platforms
+      - name: Clean previous build
+        run: |
+          rm -rf platforms/android
+          cordova clean
+
+      # 🔟 Add Android platform
       - name: Add Android platform
-        run: cordova platform add android@11 || echo "Platform already added"
+        run: cordova platform add android@11
 
-      # 🔟 Generate icons & splash screens
+      # 1️⃣1️⃣ Generate icons & splash screens
       - name: Generate icons & splash screens
-        run: cordova-res android --skip-config --copy || echo "No resources found"
+        run: cordova-res android --skip-config --copy
 
-      # 1️⃣1️⃣ Clean previous builds
-      - name: Clean previous builds
-        run: cordova clean android
+      # 1️⃣2️⃣ Build debug APK
+      - name: Build Debug APK
+        run: cordova build android --no-daemon
 
-      # 1️⃣2️⃣ Build APK (debug or release)
-      - name: Build APK
-        run: cordova build android --release --no-daemon
-
-      # 1️⃣3️⃣ Upload APK artifact
-      - name: Upload APK
+      # 1️⃣3️⃣ Upload debug APK
+      - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
+          name: app-debug
           path: platforms/android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: warn
