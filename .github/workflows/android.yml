@@ -57,15 +57,13 @@ jobs:
           sudo mv gradle-7.6 /opt/gradle
           echo "/opt/gradle/bin" >> $GITHUB_PATH
 
-      # 9️⃣ Remove old build & clean platforms
-      - name: Clean previous build
-        run: |
-          rm -rf platforms/android
-          cordova clean
-
-      # 🔟 Add Android platform
+      # 9️⃣ Add Android platform
       - name: Add Android platform
         run: cordova platform add android@11
+
+      # 🔟 Clean old builds inside Android platform (optional)
+      - name: Clean previous build
+        run: cordova clean
 
       # 1️⃣1️⃣ Generate icons & splash screens
       - name: Generate icons & splash screens
