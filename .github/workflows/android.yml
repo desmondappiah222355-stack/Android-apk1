@@ -1,4 +1,4 @@
-# Build Cordova Android APK with custom icon
+# Build Cordova Android APK with icons & splash screen
 name: Build Android APK
 
 on:
@@ -28,11 +28,11 @@ jobs:
         with:
           node-version: 18
 
-      # 4️⃣ Install Cordova & cordova-res
+      # 4️⃣ Install Cordova & cordova-res globally
       - name: Install Cordova & cordova-res
         run: npm install -g cordova cordova-res
 
-      # 5️⃣ Install npm dependencies (if any)
+      # 5️⃣ Install project dependencies
       - name: Install npm dependencies
         run: npm install || echo "No package.json found"
 
@@ -69,9 +69,9 @@ jobs:
       - name: Build APK
         run: cordova build android --release --no-daemon
 
-      # 1️⃣2️⃣ Upload APK artifact with custom name
+      # 1️⃣2️⃣ Upload APK artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Calculator-release-apk
-          path: platforms/android/app/build/outputs/apk/release/calc.apk
+          path: platforms/android/app/build/outputs/apk/debug/calc.apk
