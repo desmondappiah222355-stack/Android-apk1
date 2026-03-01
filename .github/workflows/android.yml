@@ -49,11 +49,12 @@ jobs:
         sudo mv gradle-7.6 /opt/gradle
         echo "/opt/gradle/bin" >> $GITHUB_PATH
 
+- name: Add Android platform
+      run: cordova platform add android@11 || echo "Platform already added"
+
     - name: Generate icons & splash screens
       run: cordova-res android --skip-config --copy
 
-    - name: Add Android platform
-      run: cordova platform add android@11 || echo "Platform already added"
 
     - name: Build APK
       run: cordova build android --release --no-daemon
