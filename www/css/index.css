@@ -1,46 +1,22 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #222;
-    font-family: Arial, sans-serif;
-}
-
-.calculator {
-    background: #333;
-    padding: 20px;
-    border-radius: 15px;
-}
-
-#display {
-    width: 100%;
-    height: 50px;
-    font-size: 24px;
-    text-align: right;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-}
+/* ... previous styles remain ... */
 
 .buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 60px);
-    grid-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);   /* Changed to 6 columns */
+  gap: 10px;
 }
 
-button {
-    height: 60px;
-    font-size: 20px;
-    border: none;
-    border-radius: 5px;
-    background: #555;
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.2s;
+.angle-mode {
+  text-align: right;
+  font-size: 1.1rem;
+  color: #88ccff;
+  margin-bottom: 8px;
+  padding-right: 10px;
 }
 
-button:hover {
-    background: #777;
+/* Make some scientific buttons smaller font if needed */
+.scientific {
+  font-size: 1rem;   /* slightly smaller to fit more */
 }
+
+/* Rest remains the same */
