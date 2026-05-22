@@ -1,22 +1,29 @@
-/* ... previous styles remain ... */
-
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);   /* Changed to 6 columns */
-  gap: 10px;
+body {
+  margin: 0;
+  overflow: hidden;
+  background: black;
 }
 
-.angle-mode {
-  text-align: right;
-  font-size: 1.1rem;
-  color: #88ccff;
-  margin-bottom: 8px;
-  padding-right: 10px;
+canvas {
+  display: block;
 }
 
-/* Make some scientific buttons smaller font if needed */
-.scientific {
-  font-size: 1rem;   /* slightly smaller to fit more */
+#joystickBase {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  width: 120px;
+  height: 120px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
 }
 
-/* Rest remains the same */
+#joystick {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: rgba(0,255,0,0.5);
+  border-radius: 50%;
+  top: 35px;
+  left: 35px;
+}
