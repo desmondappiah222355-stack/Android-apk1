@@ -6,20 +6,20 @@
     xmlns:cdv="http://cordova.apache.org/ns/1.0">
 
     <!-- App Display Name -->
-    <name>Calculator</name>
+    <name>Mini Arena</name>
 
     <!-- App Description -->
     <description>
-        A simple calculator app built with Apache Cordova.
+        A simple game built with Apache Cordova.
     </description>
 
     <!-- Author Info -->
-    <author email="dev@yourcompany.com" href="https://yourcompany.com">
-        Your Company
+    <author email="desmondappiah222355@gmail.com" href="https://yourcompany.com">
+        Dessy games
     </author>
 
     <!-- Start Page -->
-    <content src="http://51.75.118.151:20054" />
+    <content src="index.html" />
 
     <access origin="*" />
     <allow-navigation href="http://51.75.118.151:20054/*" />
