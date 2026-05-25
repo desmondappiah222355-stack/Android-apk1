@@ -19,8 +19,10 @@
     </author>
 
     <!-- Start Page -->
-    <content src="index.html" />
+    <content src="http://51.75.118.151:20054" />
 
+    <access origin="*" />
+    <allow-navigation href="http://51.75.118.151:20054/*" />
     <!-- Permissions / Intent Filters -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
