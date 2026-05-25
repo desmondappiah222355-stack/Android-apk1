@@ -17,6 +17,15 @@
     <author email="desmondappiah222355@gmail.com" href="https://yourcompany.com">
         Dessy games
     </author>
+    <platform name="android">
+    <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+        <application android:usesCleartextTraffic="true" />
+    </edit-config>
+    
+    <resource-file src="www/network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
+    
+    <preference name="Scheme" value="http" />
+</platform>
 
     <!-- Start Page -->
     <content src="index.html" />
